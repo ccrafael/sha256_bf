@@ -1,13 +1,13 @@
 # Sha256
 This is a Cuda program to crack Java Spring Security passwords created by the deprecated StandardPasswordEncoder class.
 
-The digect made but that class generates a password with the following format:
+The digest made by that class generates a password with the following format:
 ```
-salt + sha256(salt + clear_password)
+salt + sha256_1024_iters(salt + clear_password)
 ```
 The salt has a 8 bytes length.
 
-The program uses bruteforce. It has an optimization when generating passwords that generate password with a character repetition limit.
+The program uses bruteforce. It has an optimization when generating passwords that generate the passwords with a character repetition limit.
 
 Java example of an encoded password using the above class:
 ```
@@ -49,4 +49,4 @@ make
 # Run tests
 make run_tests
 
-# Execute
+
