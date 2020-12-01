@@ -59,7 +59,7 @@ int main(int argc, char ** argv) {
 	printf("Start \n");
 	for (unsigned long j = 0; j < 20000000000; j++) {
 
-		chrono::steady_clock::time_point begin = chrono::steady_clock::now();
+		auto begin = chrono::high_resolution_clock::now();
 		for (int i = 0; i < N; i ++) {
 			clear_pass[i] = combinations.next();
 			memcpy(hash + (i * 32), salt, salt_len);
@@ -73,8 +73,6 @@ int main(int argc, char ** argv) {
 		}
 
 		cudaDeviceSynchronize();
-		
-		begin = chrono::steady_clock::now();
 	
 		for (int i = 0; i < N; i++) {
 			if (memcmp(hash + (i * 32), encoded_pass, 32 * sizeof(BYTE)) == 0) {
@@ -84,12 +82,12 @@ int main(int argc, char ** argv) {
 				return 0;
 			}
 		}
-
 		
-		chrono::steady_clock::time_point end = chrono::steady_clock::now();
-		double duration = (chrono::duration_cast<chrono::microseconds>(end - begin).count());
-		double pass_per_second = (N / duration) * 1000000.0 ;
-		printf("current(%d): duration: %f mics - last: %s - %f pass/sec \n", j, duration, clear_pass[0].c_str(), pass_per_second);
+		auto end = chrono::high_resolution_clock::now();
+		double duration = chrono::duration<double>(end - begin).count();
+
+		double pass_per_second = (N / duration);
+		printf("current(%d): duration: %f s - last: %s - %f pass/sec \n", j, duration, clear_pass[0].c_str(), pass_per_second);
 		
 	}
 

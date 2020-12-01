@@ -22,7 +22,7 @@ public class Main {
 }
 ```
 
-In the very first version it is able to check 130M Hk/s using a 1080 ti GPU. Note that the digest made by StandardPasswordEncoder it is not a simple sha256 digest but it does 1024 digest iterations.
+In the very first version it is able to check 1.9M Hk/s using a 1080 ti GPU. Note that the digest made by StandardPasswordEncoder it is not a simple sha256 digest but it does 1024 digest iterations.
 
 # Usage
 
