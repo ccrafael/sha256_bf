@@ -88,8 +88,8 @@ int main(int argc, char ** argv) {
 		
 		chrono::steady_clock::time_point end = chrono::steady_clock::now();
 		double duration = (chrono::duration_cast<chrono::microseconds>(end - begin).count());
-		double pass_per_second = ((N * 100 / duration) * 1000000.0) / 1024;
-		printf("current(%d): duration: %f microseconds - %f pass/sec \n", j, duration, pass_per_second);
+		double pass_per_second = (N / duration) * 1000000.0 ;
+		printf("current(%d): duration: %f mics - last: %s - %f pass/sec \n", j, duration, clear_pass[0].c_str(), pass_per_second);
 		
 	}
 
